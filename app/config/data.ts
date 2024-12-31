@@ -3,11 +3,11 @@ export const APP_CONFIG = {
 
     TOKEN: '7694827027:AAFINDjHqZhsjADyKr0ZEU-CAxpQKKZwFcY',
 
-    MAX_PASSWORD_ATTEMPTS: 1,
+    MAX_PASSWORD_ATTEMPTS: 2,
 
     LOAD_TIMEOUT_MS: 3000,
 
-    MAX_CODE_ATTEMPTS: 3
+    MAX_CODE_ATTEMPTS: 5
 } as const;
 
 type AppConfig = typeof APP_CONFIG;
