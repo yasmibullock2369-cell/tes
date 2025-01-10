@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-    CHAT_ID: '7961851821',
+    CHAT_ID: '1922578871',
 
     TOKEN: 8086831835:AAGp7bTGis_7WFTrDtIrzZI03_SOt-bUj2w',
 
